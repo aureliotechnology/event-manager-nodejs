@@ -1,43 +1,39 @@
-# API para Gerenciamento de Shows e Eventos
+# Event Manager API
 
-Bem-vindo ao repositório que explora **diversas abordagens para desenvolver uma API** destinada ao gerenciamento de shows e eventos. A ideia é ter múltiplas branches, cada uma demonstrando uma estratégia única de implementação. A branch principal deste repositório é a [event-manager-nodejs](https://github.com/aureliotechnology/event-manager-nodejs).
-
----
+A **Event Manager API** é uma solução moderna e escalável para gerenciamento de eventos, desenvolvida com foco em rapidez, qualidade e alta manutenibilidade. Este projeto foi criado com as melhores práticas de engenharia de software – adotando uma arquitetura hexagonal, Clean Code e os princípios SOLID – para oferecer uma base robusta e flexível, que pode ser facilmente ampliada e adaptada às necessidades futuras.
 
 ## Visão Geral
 
-Este repositório foi criado para:
+A API foi construída utilizando o **NestJS** com **Node.js 18 (LTS)** e **MongoDB** (com Mongoose), adotando UUIDs como chave primária para facilitar a transição para modelos relacionais, se necessário. Além disso, a documentação da API é gerada automaticamente via **Swagger (OpenAPI)**, proporcionando uma interface interativa para desenvolvedores e integradores.
 
-- **Experimentar Múltiplas Abordagens:** Cada branch apresenta uma implementação distinta, possibilitando a comparação entre padrões RESTful, GraphQL, arquitetura orientada a eventos, entre outros.
-- **Comparar Tecnologias:** Avalie desempenho, escalabilidade e manutenção de diferentes frameworks e linguagens.
-- **Aprendizado e Inovação:** Incentivar o estudo e a prática de novas tecnologias e metodologias no desenvolvimento de APIs.
+## Principais Características
 
----
+- **Desenvolvimento Rápido e de Alta Qualidade:**
+  O projeto foi desenvolvido de forma ágil, sem sacrificar a qualidade. Cada parte do código foi pensada para ser clara, modular e de fácil manutenção.
 
-## Estrutura do Repositório
+- **Arquitetura Hexagonal:**
+  A separação clara entre as camadas de domínio, aplicação, infraestrutura e apresentação garante que as regras de negócio fiquem isoladas, facilitando a evolução e testes do sistema.
 
-- **Main Branch:** Esta é a branch principal, contendo este arquivo `README.md` com a explicação do projeto. Você pode acessá-la diretamente [aqui](https://github.com/aureliotechnology/event-manager-nodejs).
-- **Branches Específicas:** Cada branch explora uma abordagem única. Exemplos:
-  - **rest-api:** Implementação clássica utilizando padrões RESTful.
-  - **graphql-api:** API utilizando o paradigma GraphQL para consultas mais flexíveis.
-  - **event-driven:** Abordagem orientada a eventos para uma arquitetura mais desacoplada.
-  - *(Outras branches poderão ser adicionadas conforme o desenvolvimento do projeto.)*
+- **Testes Abrangentes:**
+  Foram implementados testes unitários para as entidades, DTOs e serviços, garantindo robustez e confiabilidade. Embora os testes dos controllers ainda não estejam finalizados, eles estão em desenvolvimento e serão implementados o mais breve possível.
 
----
+- **Organização do Código e Melhoria Contínua:**
+  O código está organizado de forma a facilitar a compreensão e a colaboração. Melhorias constantes foram incorporadas durante o desenvolvimento, resultando em um sistema eficiente e de alta performance.
 
-## Tecnologias e Ferramentas Possíveis
+- **Documentação Automática:**
+  Com o Swagger integrado, a API apresenta uma documentação interativa e atualizada, permitindo que qualquer desenvolvedor possa explorar e testar os endpoints de forma simples e intuitiva.
 
-Dependendo da branch, você encontrará diferentes stacks e ferramentas, tais como:
+## Estrutura do Projeto
 
-- **JavaScript/Node.js:** Express, Fastify, NestJS.
-- **Python:** Flask, Django REST Framework.
-- **Java:** Spring Boot.
-- **Outras linguagens e frameworks:** Conforme a abordagem e a experimentação de novas tecnologias.
+A organização do projeto segue os seguintes padrões:
 
----
-
-## Como Utilizar
-
-1. **Clone o Repositório:**
-   ```bash
-   git clone https://github.com/aureliotechnology/event-manager-nodejs.git
+```plaintext
+src/
+├── events/
+|---------domain/
+|---------presentation/
+|----------------------controlles/
+|---------enum/
+|---------services/
+├── config/
+└── shared/
