@@ -1,0 +1,9 @@
+{
+  "type": "mongodb",
+  "host": "localhost",
+  "port": 27017,
+  "database": "event_manager",
+  "synchronize": true,
+  "logging": false,
+  "entities": ["src/domain/entities/*.ts"]
+}

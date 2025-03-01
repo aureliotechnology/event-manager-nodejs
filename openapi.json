@@ -1,0 +1,196 @@
+{
+  "components": {
+    "schemas": {}
+  },
+  "info": {
+    "title": "Event Manager API",
+    "version": "1.0.0",
+    "description": "API para gerenciamento de eventos"
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/events/": {
+      "get": {
+        "operationId": "EventController.getAll",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Retrieve all events",
+        "tags": [
+          "Event"
+        ],
+        "description": "Returns a list of all events."
+      },
+      "post": {
+        "operationId": "EventController.create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEventDto"
+              }
+            }
+          },
+          "description": "",
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful response"
+          },
+          "201": {
+            "description": "Event created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "summary": "Create a new event",
+        "tags": [
+          "Event"
+        ],
+        "description": "Creates an event using the provided data."
+      }
+    },
+    "/events/{id}": {
+      "get": {
+        "operationId": "EventController.getOne",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "pattern": "[^\\/#\\?]+?",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Retrieve a specific event",
+        "tags": [
+          "Event"
+        ],
+        "description": "Returns an event by its ID."
+      },
+      "put": {
+        "operationId": "EventController.update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "pattern": "[^\\/#\\?]+?",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEventDto"
+              }
+            }
+          },
+          "description": "",
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventResponse"
+                }
+              }
+            },
+            "description": "Event updated successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "404": {
+            "description": "Event not found"
+          }
+        },
+        "summary": "Update an event",
+        "tags": [
+          "Event"
+        ],
+        "description": "Updates an event by its ID using the provided data."
+      },
+      "delete": {
+        "operationId": "EventController.delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "pattern": "[^\\/#\\?]+?",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Event deleted successfully"
+          },
+          "404": {
+            "description": "Event not found"
+          }
+        },
+        "summary": "Delete an event",
+        "tags": [
+          "Event"
+        ],
+        "description": "Deletes an event by its ID."
+      }
+    },
+    "/health-check/": {
+      "get": {
+        "operationId": "HealthCheckController.check",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Check API status",
+        "tags": [
+          "Health Check"
+        ],
+        "description": "Returns a simple status check for the API."
+      }
+    }
+  }
+}

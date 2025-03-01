@@ -1,0 +1,298 @@
+{
+	"openapi": "3.0.0",
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"EventModality": {
+				"enum": [
+					"presencial",
+					"virtual",
+					"hibrido"
+				],
+				"type": "string"
+			},
+			"Partial_CreateEventDto_": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"address": {
+						"type": "string"
+					},
+					"mapUrl": {
+						"type": "string"
+					},
+					"date": {
+						"type": "string"
+					},
+					"modality": {
+						"$ref": "#/components/schemas/EventModality"
+					},
+					"cancellationPolicy": {
+						"type": "string"
+					},
+					"participantEditionPolicy": {
+						"type": "string"
+					},
+					"ticketType": {
+						"type": "string"
+					},
+					"ticketPrice": {
+						"type": "number",
+						"format": "double"
+					},
+					"ticketQuantity": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"type": "object",
+				"description": "Make all properties in T optional"
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "event-manager-nodejs",
+		"version": "1.0.0",
+		"description": "Bem-vindo ao repositório que explora **diversas abordagens para desenvolver uma API** destinada ao gerenciamento de shows e eventos. A ideia é ter múltiplas branches, cada uma demonstrando uma estratégia única de implementação. A branch principal deste repositório é a [event-manager-nodejs](https://github.com/aureliotechnology/event-manager-nodejs).",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {}
+	},
+	"paths": {
+		"/health-check": {
+			"get": {
+				"operationId": "Check",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"status": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"status"
+									],
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"description": "Verifica o status da API",
+				"tags": [
+					"HealthCheck"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/events": {
+			"post": {
+				"operationId": "CreateEvent",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"data": {},
+										"message": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"data",
+										"message"
+									],
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"description": "Cria um novo evento.",
+				"tags": [
+					"Event"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"description": "Dados para criação do evento.",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"description": "Dados para criação do evento."
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "GetEvents",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Lista todos os eventos.",
+				"tags": [
+					"Event"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/events/{id}": {
+			"get": {
+				"operationId": "GetEventById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"description": "Recupera um evento pelo ID.",
+				"tags": [
+					"Event"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "ID do evento.",
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"put": {
+				"operationId": "UpdateEvent",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"data": {},
+										"message": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"data",
+										"message"
+									],
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"description": "Atualiza um evento pelo ID.",
+				"tags": [
+					"Event"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "ID do evento.",
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"description": "Dados parciais para atualização do evento.",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Partial_CreateEventDto_",
+								"description": "Dados parciais para atualização do evento."
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "DeleteEvent",
+				"responses": {
+					"200": {
+						"description": "Evento deletado",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"message": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"message"
+									],
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"description": "Deleta um evento pelo ID.",
+				"tags": [
+					"Event"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "ID do evento.",
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}
