@@ -1,0 +1,113 @@
+{
+  "info": {
+    "name": "Event Manager API - NestJS",
+    "_postman_id": "123e4567-e89b-12d3-a456-426614174000",
+    "description": "Coleção para testar as rotas da API Event Manager",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Event",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Concerto de Verão\",\n  \"description\": \"Evento com apresentação ao vivo.\",\n  \"address\": \"Av. Exemplo, 123\",\n  \"mapUrl\": \"https://maps.google.com/?q=Av+Exemplo,+123\",\n  \"date\": \"2025-06-15T18:00:00Z\",\n  \"modality\": \"presencial\",\n  \"cancellationPolicy\": \"Cancelamento sem custos até 24h antes do evento.\",\n  \"participantEditionPolicy\": \"Edição permitida até 12h antes do evento.\",\n  \"ticketType\": \"padrão\",\n  \"ticketPrice\": 50,\n  \"ticketQuantity\": 100\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/events",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["events"]
+        }
+      }
+    },
+    {
+      "name": "Get All Events",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:3000/events",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["events"]
+        }
+      }
+    },
+    {
+      "name": "Get Event by ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:3000/events/:id",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["events", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "123e4567-e89b-12d3-a456-426614174000"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update Event",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Concerto de Outono\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/events/:id",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["events", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "123e4567-e89b-12d3-a456-426614174000"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete Event",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "http://localhost:3000/events/:id",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["events", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "123e4567-e89b-12d3-a456-426614174000"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

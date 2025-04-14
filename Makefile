@@ -1,4 +1,4 @@
-.PHONY: install start test build lint docker-build docker-up docker-down docker-restart
+.PHONY: install start test build lint docker-build docker-up docker-down docker-restart docker-test
 
 # Instala as dependências do projeto
 install:
@@ -21,16 +21,20 @@ lint:
 	npm run lint
 
 # Constrói as imagens definidas no docker-compose.yml
-build:
+docker-build:
 	docker-compose build
 
 # Sobe os containers em modo detach (em background)
 up:
-	docker-compose up -d
+	docker-compose up --build -d
 
 # Para e remove os containers
 down:
 	docker-compose down
 
 # Reinicia os containers: para e depois sobe novamente
-docker-restart: docker-down docker-up
+docker-restart: down up
+
+# Executa os testes dentro do container Docker
+docker-test:
+	docker exec -it event-manager-nodejs-app-1 npm test
